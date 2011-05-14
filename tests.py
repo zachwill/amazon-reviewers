@@ -26,13 +26,14 @@ class TestProductInitialization(unittest.TestCase):
         self.assertRaises(TypeError, Product)
 
     def test_initialization_with_fake_url(self):
-        movie =  Product(self.url)
+        movie = Product(self.url)
         self.assertEqual(
             movie.split_url.path, ('/Inception-Two-Disc/dp/B002ZG981E/'
                                    'ref=cm_pr_product_top'))
         self.assertEqual(
             movie.reviews_url.path, ('/Inception-Two-Disc/product-reviews/'
                                      'B002ZG981E/ref=cm_pr_product_top'))
+
 
 class TestStarReviewsUrl(unittest.TestCase):
 
@@ -88,14 +89,14 @@ class TestStarReviewers(unittest.TestCase):
     def test_star_reviewers_for_1_star_5_page(self):
         Product('http://fake')._star_reviewers(1, 5)
         called_url = urlsplit(amazon.Request.call_args[0][0])
-        parsed_query =  parse_qs(called_url.query)
+        parsed_query = parse_qs(called_url.query)
         assert 'addOneStar' in parsed_query['filterBy']
         assert '5' in parsed_query['pageNumber']
 
     def test_star_reviewers_for_3_star_2_page(self):
         Product('http://fake')._star_reviewers(3, 2)
         called_url = urlsplit(amazon.Request.call_args[0][0])
-        parsed_query =  parse_qs(called_url.query)
+        parsed_query = parse_qs(called_url.query)
         assert 'addThreeStar' in parsed_query['filterBy']
         assert '2' in parsed_query['pageNumber']
 
