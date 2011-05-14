@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 
 """
-Find what all the people who voted 1-star for Inception on Amazon have in
-common with one another. Are they trolls or do they just have no taste in
-movies?
+Find profiles for Amazon reviewers based on their review ratings for a certain
+product.
 """
 
 import re
@@ -20,6 +19,8 @@ class Product(object):
 
     >>> amazon_url = 'http://link-to-inception'
     >>> inception = Product(amazon_url)
+    >>> all_reviewers = inception.reviewers()
+    >>> one_star_reviewers = inception.reviewers(1)
     """
 
     def __init__(self, url):
