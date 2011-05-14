@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 
 """
-Find profiles for Amazon reviewers based on their review ratings for a certain
+Find profiles for Amazon reviewers based on their review ratings for a
 product.
+
+Originally, I was interested in finding out who had given the movie Inception a
+one-star review.
 """
 
 import re
@@ -101,8 +104,8 @@ class Product(object):
 
         >>> all_reviews = book.reviewers()
         """
-        number_of_pages = self._number_of_review_pages(stars) + 1
         all_reviewers = []
+        number_of_pages = self._number_of_review_pages(stars) + 1
         for page_num in xrange(1, number_of_pages):
             all_reviewers.extend(self._star_reviewers(stars, page_num))
         return all_reviewers
